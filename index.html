@@ -3,98 +3,143 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>好き顔ランキング</title>
+<title>♡ 好き顔ランキング ♡</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
+html,
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,
-  "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  background:#f7f7f9;
-  color:#222;
+  min-height:100%;
+}
+
+body{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #dff7ff 0%,
+      #eefbff 45%,
+      #f8fdff 100%
+    );
+
+  color:#17313a;
 }
 
 header{
-  background:#fff;
-  padding:22px 16px 14px;
+  background:rgba(255,255,255,.88);
+  padding:34px 16px 24px;
   text-align:center;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid rgba(100,190,215,.25);
+  box-shadow:0 3px 18px rgba(60,160,190,.08);
 }
 
 h1{
-  margin:0 0 6px;
-  font-size:25px;
+  margin:0 0 8px;
+  font-size:27px;
+  font-weight:900;
+  color:#15566a;
 }
 
 .sub{
-  color:#777;
+  color:#6b8992;
   font-size:13px;
 }
 
 main{
-  max-width:760px;
-  margin:auto;
-  padding:16px;
+  width:100%;
+  max-width:850px;
+  margin:0 auto;
+  padding:42px 18px 60px;
 }
 
 .panel{
-  background:#fff;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.04);
+  background:rgba(255,255,255,.94);
+  border-radius:26px;
+  padding:30px;
+  margin:0 auto 24px;
+  box-shadow:
+    0 10px 35px rgba(55,150,180,.12);
+  border:1px solid rgba(120,210,230,.22);
 }
 
-.hidden{display:none!important}
-.center{text-align:center}
+.hidden{
+  display:none!important;
+}
+
+.center{
+  text-align:center;
+}
+
+h2{
+  margin:8px 0 14px;
+  color:#15566a;
+}
 
 button{
   border:0;
-  border-radius:13px;
-  padding:13px 17px;
+  border-radius:15px;
+  padding:14px 20px;
   font-size:15px;
-  font-weight:700;
+  font-weight:800;
   cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .primary{
-  background:#222;
-  color:#fff;
+  background:#58c7e5;
+  color:white;
+  box-shadow:0 5px 14px rgba(65,180,210,.25);
+}
+
+.primary:active{
+  transform:scale(.98);
 }
 
 .secondary{
-  background:#eee;
-  color:#222;
+  background:#e5f7fc;
+  color:#286476;
 }
 
 .info{
-  color:#777;
+  color:#708991;
   font-size:13px;
-  line-height:1.7;
+  line-height:1.8;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:16px;
+  gap:15px;
+  margin-top:24px;
 }
 
 .photo{
   position:relative;
-  border:3px solid transparent;
-  border-radius:16px;
+  border:4px solid transparent;
+  border-radius:19px;
   overflow:hidden;
-  background:#eee;
+  background:#eafaff;
   padding:0;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  box-shadow:0 5px 15px rgba(50,150,180,.13);
+  transition:.15s;
 }
 
 .photo.selected{
-  border-color:#222;
-  transform:scale(.98);
+  border-color:#4bc3e2;
+  transform:scale(.97);
+  box-shadow:
+    0 0 0 3px rgba(75,195,226,.14),
+    0 7px 18px rgba(50,150,180,.18);
 }
 
 .photo img{
@@ -108,14 +153,17 @@ button{
   position:absolute;
   right:8px;
   top:8px;
-  width:30px;
-  height:30px;
+  width:31px;
+  height:31px;
   border-radius:50%;
   background:#fff;
+  color:#36afd0;
   display:none;
   align-items:center;
   justify-content:center;
-  font-size:18px;
+  font-size:19px;
+  font-weight:900;
+  box-shadow:0 2px 7px rgba(0,0,0,.12);
 }
 
 .photo.selected .mark{
@@ -123,32 +171,43 @@ button{
 }
 
 .progress{
-  height:7px;
-  background:#eee;
+  height:8px;
+  background:#e1f4f8;
   border-radius:99px;
   overflow:hidden;
-  margin:12px 0 16px;
+  margin:16px 0 20px;
 }
 
 .bar{
   height:100%;
-  background:#222;
+  background:linear-gradient(
+    90deg,
+    #83dff1,
+    #42bddc
+  );
   width:0;
-  transition:.2s;
+  transition:.25s;
 }
 
 .league{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:16px;
+  gap:15px;
+  margin-top:24px;
 }
 
 .league button{
   padding:0;
   background:white;
   overflow:hidden;
-  box-shadow:0 3px 14px rgba(0,0,0,.1);
+  box-shadow:0 6px 20px rgba(50,150,180,.13);
+  border:3px solid transparent;
+  transition:.15s;
+}
+
+.league button:active{
+  transform:scale(.97);
+  border-color:#58c7e5;
 }
 
 .league img{
@@ -159,29 +218,32 @@ button{
 }
 
 .league .label{
-  padding:11px;
+  padding:13px 8px;
+  color:#286476;
+  background:#f5fcfe;
 }
 
 .actions{
   display:flex;
-  gap:8px;
+  gap:10px;
   flex-wrap:wrap;
-  margin-top:16px;
+  justify-content:center;
+  margin-top:24px;
 }
 
 .resultGrid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-  margin-top:18px;
+  gap:15px;
+  margin-top:24px;
 }
 
 .resultCard{
   background:#fff;
-  border-radius:18px;
-  border:1px solid #eee;
+  border-radius:19px;
+  border:1px solid #dff1f5;
   overflow:hidden;
-  box-shadow:0 6px 18px rgba(0,0,0,.04);
+  box-shadow:0 7px 20px rgba(50,150,180,.10);
 }
 
 .resultCard img{
@@ -193,29 +255,72 @@ button{
 
 .rankText{
   text-align:center;
-  padding:10px 5px 12px;
+  padding:12px 5px 14px;
   font-size:18px;
   font-weight:900;
-}
-
-.score{
-  text-align:center;
-  color:#777;
-  font-size:12px;
-  padding-bottom:10px;
+  color:#23687a;
 }
 
 .top1{
-  font-size:20px;
+  font-size:22px;
   font-weight:900;
+  color:#15566a;
 }
 
-@media(max-width:500px){
-  main{padding:11px}
-  .panel{padding:14px}
-  .grid{gap:7px}
-  .league{gap:7px}
-  .resultGrid{gap:8px}
+@media(max-width:600px){
+
+  header{
+    padding:27px 14px 20px;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  main{
+    padding:30px 11px 45px;
+  }
+
+  .panel{
+    padding:20px 14px 24px;
+    border-radius:22px;
+  }
+
+  .grid{
+    gap:8px;
+    margin-top:20px;
+  }
+
+  .league{
+    gap:8px;
+    margin-top:20px;
+  }
+
+  .resultGrid{
+    gap:8px;
+  }
+
+  .photo{
+    border-radius:14px;
+  }
+
+  .league button{
+    border-radius:14px;
+  }
+
+  .actions button{
+    flex:1;
+    min-width:120px;
+  }
+}
+
+@media(min-width:601px){
+
+  #home{
+    padding-top:65px;
+    padding-bottom:65px;
+  }
+
 }
 </style>
 </head>
@@ -223,118 +328,125 @@ button{
 <body>
 
 <header>
-<h1>♡ 好き顔ランキング</h1>
-<div class="sub">あなたが一番好きな顔を決めよう</div>
+  <h1>♡ 好き顔ランキング ♡</h1>
+  <div class="sub">あなたが一番好きな顔を決めよう</div>
 </header>
 
 <main>
 
 <!-- ホーム -->
+
 <section id="home" class="panel center">
 
-<h2>好き顔ランキング</h2>
+  <h2>好き顔ランキング</h2>
 
-<p class="info">
-写真の中から好きな顔を選んでください。<br>
-最後にあなた専用のランキングが決まります。
-</p>
+  <p class="info">
+    写真の中から好きな顔を選んでください。<br>
+    最後にあなた専用のランキングが決まります。
+  </p>
 
-<button class="primary" id="startButton">
-ランキング開始
-</button>
+  <button class="primary" id="startButton">
+    ランキング開始
+  </button>
 
 </section>
 
 
 <!-- 予選 -->
+
 <section id="qualify" class="panel hidden">
 
-<b id="qualifyTitle">予選</b>
+  <b id="qualifyTitle">予選</b>
 
-<div class="progress">
-<div id="qualifyBar" class="bar"></div>
-</div>
+  <div class="progress">
+    <div id="qualifyBar" class="bar"></div>
+  </div>
 
-<div class="info">
-この中から<strong>好きな写真を何枚でも選べます。</strong><br>
-1枚も選ばなくても次へ進めます。
-</div>
+  <div class="info">
+    この中から<strong>好きな写真を何枚でも選べます。</strong><br>
+    1枚も選ばなくても次へ進めます。
+  </div>
 
-<div id="qualifyGrid" class="grid"></div>
+  <div id="qualifyGrid" class="grid"></div>
 
-<div class="actions">
+  <div class="actions">
 
-<button id="qualifyBack" class="secondary">
-← 1つ前
-</button>
+    <button id="qualifyBack" class="secondary">
+      ← 1つ前
+    </button>
 
-<button id="qualifyNext" class="primary">
-選択を決定
-</button>
+    <button id="qualifyNext" class="primary">
+      選択を決定
+    </button>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- リーグ -->
+<!-- 予選通過リーグ -->
+
 <section id="league" class="panel hidden">
 
-<b id="leagueTitle">予選通過リーグ</b>
+  <b id="leagueTitle">
+    予選通過リーグ
+  </b>
 
-<p class="info">
-3枚の中から<strong>一番好きな1枚</strong>を選んでください。
-</p>
+  <p class="info">
+    3枚の中から<strong>一番好きな1枚</strong>を選んでください。
+  </p>
 
-<p class="info">
-選択結果によって、次に出てくる3枚が変化します。
-</p>
+  <p class="info">
+    あなたの選択結果によって、
+    次に出てくる3枚が変化します。
+  </p>
 
-<div class="progress">
-<div id="leagueBar" class="bar"></div>
-</div>
+  <div class="progress">
+    <div id="leagueBar" class="bar"></div>
+  </div>
 
-<div id="leagueGrid" class="league"></div>
+  <div id="leagueGrid" class="league"></div>
 
-<div class="actions">
+  <div class="actions">
 
-<button id="leagueBack" class="secondary">
-← 1つ前
-</button>
+    <button id="leagueBack" class="secondary">
+      ← 1つ前
+    </button>
 
-</div>
+  </div>
 
 </section>
 
 
 <!-- 結果 -->
+
 <section id="result" class="panel hidden">
 
-<div class="center">
+  <div class="center">
 
-<div class="top1">
-🏆 あなたの好き顔ランキング
-</div>
+    <div class="top1">
+      🏆 あなたの好き顔ランキング
+    </div>
 
-<p class="info">
-予選通過リーグでの選択結果から決定しました
-</p>
+    <p class="info">
+      あなたが選んだ結果です
+    </p>
 
-</div>
+  </div>
 
-<div id="ranking" class="resultGrid"></div>
+  <div id="ranking" class="resultGrid"></div>
 
-<div class="actions">
+  <div class="actions">
 
-<button id="resultBack" class="secondary">
-← リーグに戻る
-</button>
+    <button id="resultBack" class="secondary">
+      ← リーグに戻る
+    </button>
 
-<button id="retry" class="primary">
-もう一度やる
-</button>
+    <button id="retry" class="primary">
+      もう一度やる
+    </button>
 
-</div>
+  </div>
 
 </section>
 
@@ -347,7 +459,7 @@ button{
 写真
 ========================= */
 
-const PHOTO_FILES=[
+const PHOTO_FILES = [
 
 "IMG_2717.jpeg",
 "IMG_2718.jpeg",
@@ -408,29 +520,30 @@ const PHOTO_FILES=[
 状態
 ========================= */
 
-const state={
+const state = {
 
-photos:[],
+  photos: [],
 
-qualifyGroups:[],
-qualifyIndex:0,
-qualifySelections:[],
+  qualifyGroups: [],
+  qualifyIndex: 0,
+  qualifySelections: [],
 
-finalists:[],
+  finalists: [],
 
-leagueIndex:0,
-leagueHistory:[],
+  leagueIndex: 0,
+  leagueHistory: [],
 
-wins:{},
-appearances:{},
-pairCounts:{},
+  wins: {},
+  appearances: {},
+  pairCounts: {},
 
-result:[]
+  result: []
 
 };
 
 
-const $=id=>document.getElementById(id);
+const $ = id =>
+  document.getElementById(id);
 
 
 /* =========================
@@ -439,17 +552,21 @@ const $=id=>document.getElementById(id);
 
 function shuffle(arr){
 
-const copy=[...arr];
+  const copy = [...arr];
 
-for(let i=copy.length-1;i>0;i--){
+  for(let i = copy.length - 1; i > 0; i--){
 
-const j=Math.floor(Math.random()*(i+1));
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
 
-[copy[i],copy[j]]=[copy[j],copy[i]];
+    [copy[i],copy[j]] =
+      [copy[j],copy[i]];
 
-}
+  }
 
-return copy;
+  return copy;
 
 }
 
@@ -460,13 +577,14 @@ return copy;
 
 function loadPhotos(){
 
-state.photos=PHOTO_FILES.map((file,index)=>({
+  state.photos =
+    PHOTO_FILES.map((file,index)=>({
 
-id:index,
-file:file,
-url:file
+      id:index,
+      file:file,
+      url:file
 
-}));
+    }));
 
 }
 
@@ -478,47 +596,91 @@ url:file
 
 function createQualifyGroups(){
 
-const shuffled=shuffle(state.photos);
+  const shuffled =
+    shuffle(state.photos);
 
-const groups=[];
+  const groups = [];
 
-let index=0;
+  let index = 0;
 
-while(index<shuffled.length){
+  while(index < shuffled.length){
 
-const remaining=shuffled.length-index;
+    const remaining =
+      shuffled.length - index;
 
-let size;
+    let size;
 
-if(remaining<=6){
+    if(remaining <= 6){
 
-size=remaining;
+      size = remaining;
 
-}else if(remaining===7){
+      /*
+       * 最後が4枚以下になりそうなら
+       * 前のグループから移動
+       */
 
-size=5;
+      if(size < 5 && groups.length > 0){
 
-}else{
+        const last =
+          groups[groups.length - 1];
 
-size=Math.random()<.5?5:6;
+        if(last.length > 5){
 
-if(remaining-size>0&&remaining-size<5){
+          const moved =
+            last.pop();
 
-size=5;
+          const group =
+            shuffled.slice(
+              index,
+              index + size
+            );
 
-}
+          group.push(moved);
 
-}
+          groups.push(group);
 
-groups.push(
-shuffled.slice(index,index+size)
-);
+          index += size;
 
-index+=size;
+          continue;
 
-}
+        }
 
-return groups;
+      }
+
+    }else{
+
+      size =
+        Math.random() < 0.5
+        ? 5
+        : 6;
+
+      /*
+       * 残りが4枚にならないように調整
+       */
+
+      const after =
+        remaining - size;
+
+      if(after > 0 && after < 5){
+
+        size = 5;
+
+      }
+
+    }
+
+    groups.push(
+      shuffled.slice(
+        index,
+        index + size
+      )
+    );
+
+    index += size;
+
+  }
+
+  return groups;
 
 }
 
@@ -529,18 +691,19 @@ return groups;
 
 function startQualify(){
 
-state.qualifyGroups=createQualifyGroups();
+  state.qualifyGroups =
+    createQualifyGroups();
 
-state.qualifyIndex=0;
-state.qualifySelections=[];
-state.finalists=[];
+  state.qualifyIndex = 0;
+  state.qualifySelections = [];
+  state.finalists = [];
 
-$("home").classList.add("hidden");
-$("result").classList.add("hidden");
-$("league").classList.add("hidden");
-$("qualify").classList.remove("hidden");
+  $("home").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("league").classList.add("hidden");
+  $("qualify").classList.remove("hidden");
 
-showQualify();
+  showQualify();
 
 }
 
@@ -551,41 +714,49 @@ showQualify();
 
 function showQualify(){
 
-const group=
-state.qualifyGroups[state.qualifyIndex];
+  const group =
+    state.qualifyGroups[
+      state.qualifyIndex
+    ];
 
-if(!group){
+  if(!group){
 
-collectFinalists();
-startLeague();
-return;
+    collectFinalists();
+    startLeague();
 
-}
+    return;
 
-$("qualifyTitle").textContent=
-`予選 ${state.qualifyIndex+1} / ${state.qualifyGroups.length}`;
+  }
 
-$("qualifyBar").style.width=
-`${(state.qualifyIndex/state.qualifyGroups.length)*100}%`;
+  $("qualifyTitle").textContent =
+    `予選 ${state.qualifyIndex + 1} / ${state.qualifyGroups.length}`;
 
-const saved=
-state.qualifySelections[state.qualifyIndex]||[];
+  $("qualifyBar").style.width =
+    `${(state.qualifyIndex /
+    state.qualifyGroups.length) * 100}%`;
 
-$("qualifyGrid").innerHTML=
+  const saved =
+    state.qualifySelections[
+      state.qualifyIndex
+    ] || [];
 
-group.map(p=>`
+  $("qualifyGrid").innerHTML =
 
-<button
-class="photo ${saved.includes(p.id)?"selected":""}"
-onclick="toggleSelect(${p.id})">
+    group.map(p=>`
 
-<img src="${p.url}">
+      <button
+        class="photo ${saved.includes(p.id) ? "selected" : ""}"
+        onclick="toggleSelect(${p.id})">
 
-<span class="mark">✓</span>
+        <img src="${p.url}">
 
-</button>
+        <span class="mark">
+          ✓
+        </span>
 
-`).join("");
+      </button>
+
+    `).join("");
 
 }
 
@@ -594,29 +765,40 @@ onclick="toggleSelect(${p.id})">
 予選選択
 ========================= */
 
-window.toggleSelect=function(id){
+window.toggleSelect =
+function(id){
 
-if(!state.qualifySelections[state.qualifyIndex]){
+  if(!state.qualifySelections[
+    state.qualifyIndex
+  ]){
 
-state.qualifySelections[state.qualifyIndex]=[];
+    state.qualifySelections[
+      state.qualifyIndex
+    ] = [];
 
-}
+  }
 
-const selected=
-state.qualifySelections[state.qualifyIndex];
+  const selected =
+    state.qualifySelections[
+      state.qualifyIndex
+    ];
 
-if(selected.includes(id)){
+  if(selected.includes(id)){
 
-state.qualifySelections[state.qualifyIndex]=
-selected.filter(x=>x!==id);
+    state.qualifySelections[
+      state.qualifyIndex
+    ] =
+      selected.filter(
+        x => x !== id
+      );
 
-}else{
+  }else{
 
-selected.push(id);
+    selected.push(id);
 
-}
+  }
 
-showQualify();
+  showQualify();
 
 };
 
@@ -625,45 +807,61 @@ showQualify();
 予選 次へ
 ========================= */
 
-$("qualifyNext").addEventListener("click",()=>{
+$("qualifyNext")
+.addEventListener(
+  "click",
+  ()=>{
 
-if(state.qualifyIndex<
-state.qualifyGroups.length-1){
+    if(
+      state.qualifyIndex <
+      state.qualifyGroups.length - 1
+    ){
 
-state.qualifyIndex++;
+      state.qualifyIndex++;
 
-showQualify();
+      showQualify();
 
-}else{
+    }else{
 
-collectFinalists();
-startLeague();
+      collectFinalists();
 
-}
+      startLeague();
 
-});
+    }
+
+  }
+);
 
 
 /* =========================
 予選 戻る
 ========================= */
 
-$("qualifyBack").addEventListener("click",()=>{
+$("qualifyBack")
+.addEventListener(
+  "click",
+  ()=>{
 
-if(state.qualifyIndex>0){
+    if(state.qualifyIndex > 0){
 
-state.qualifyIndex--;
+      state.qualifyIndex--;
 
-showQualify();
+      showQualify();
 
-}else{
+    }else{
 
-$("qualify").classList.add("hidden");
-$("home").classList.remove("hidden");
+      $("qualify")
+        .classList
+        .add("hidden");
 
-}
+      $("home")
+        .classList
+        .remove("hidden");
 
-});
+    }
+
+  }
+);
 
 
 /* =========================
@@ -672,26 +870,31 @@ $("home").classList.remove("hidden");
 
 function collectFinalists(){
 
-const ids=[];
+  const ids = [];
 
-state.qualifySelections.forEach(group=>{
+  state.qualifySelections
+    .forEach(group=>{
 
-group.forEach(id=>{
+      group.forEach(id=>{
 
-if(!ids.includes(id)){
+        if(!ids.includes(id)){
 
-ids.push(id);
+          ids.push(id);
 
-}
+        }
 
-});
+      });
 
-});
+    });
 
-state.finalists=
-ids.map(id=>
-state.photos.find(p=>p.id===id)
-).filter(Boolean);
+  state.finalists =
+    ids
+    .map(id=>
+      state.photos.find(
+        p => p.id === id
+      )
+    )
+    .filter(Boolean);
 
 }
 
@@ -702,19 +905,19 @@ state.photos.find(p=>p.id===id)
 
 function pairKey(a,b){
 
-return[
-Math.min(a.id,b.id),
-Math.max(a.id,b.id)
-].join("-");
+  return [
+    Math.min(a.id,b.id),
+    Math.max(a.id,b.id)
+  ].join("-");
 
 }
 
 function trioKey(group){
 
-return group
-.map(p=>p.id)
-.sort((a,b)=>a-b)
-.join("-");
+  return group
+    .map(p=>p.id)
+    .sort((a,b)=>a-b)
+    .join("-");
 
 }
 
@@ -725,204 +928,189 @@ return group
 
 function initializeLeague(){
 
-state.leagueIndex=0;
-state.leagueHistory=[];
-state.wins={};
-state.appearances={};
-state.pairCounts={};
+  state.leagueIndex = 0;
+  state.leagueHistory = [];
+  state.wins = {};
+  state.appearances = {};
+  state.pairCounts = {};
 
-state.finalists.forEach(p=>{
+  state.finalists.forEach(p=>{
 
-state.wins[p.id]=0;
-state.appearances[p.id]=0;
+    state.wins[p.id] = 0;
+    state.appearances[p.id] = 0;
 
-});
+  });
 
 }
 
 
 /* =========================
-次の3枚を決定
-
+次の3枚
 選択結果によって変化
 ========================= */
 
 function createNextLeagueGroup(){
 
-const players=[...state.finalists];
+  const players =
+    [...state.finalists];
 
-if(players.length<=3){
+  if(players.length <= 3){
 
-return shuffle(players);
+    return shuffle(players);
 
-}
-
-
-/*
-勝利数が少なく、
-比較回数も少ない写真を
-優先候補にする
-*/
-
-function priority(p){
-
-const wins=
-state.wins[p.id]||0;
-
-const appearances=
-state.appearances[p.id]||0;
-
-return(
-100/(appearances+1)
-+
-20/(wins+1)
-+
-Math.random()*10
-);
-
-}
+  }
 
 
-const firstCandidates=
-[...players].sort(
-(a,b)=>priority(b)-priority(a)
-);
+  function priority(p){
 
-const first=
-firstCandidates[0];
+    const wins =
+      state.wins[p.id] || 0;
 
+    const appearances =
+      state.appearances[p.id] || 0;
 
-/*
-2人目
-*/
+    return (
+      100 / (appearances + 1) +
+      20 / (wins + 1) +
+      Math.random() * 10
+    );
 
-const secondCandidates=
-
-players
-.filter(p=>p.id!==first.id)
-.sort((a,b)=>{
-
-const pairA=
-state.pairCounts[pairKey(first,a)]||0;
-
-const pairB=
-state.pairCounts[pairKey(first,b)]||0;
-
-if(pairA!==pairB){
-
-return pairA-pairB;
-
-}
-
-const winsA=
-state.wins[a.id]||0;
-
-const winsB=
-state.wins[b.id]||0;
-
-const firstWins=
-state.wins[first.id]||0;
-
-return(
-Math.abs(winsA-firstWins)
--
-Math.abs(winsB-firstWins)
-);
-
-});
+  }
 
 
-const second=
-secondCandidates[0];
+  const candidates =
+    [...players].sort(
+      (a,b)=>
+        priority(b)-priority(a)
+    );
 
 
-/*
-3人目
-*/
-
-const thirdCandidates=
-
-players
-.filter(
-p=>
-p.id!==first.id&&
-p.id!==second.id
-)
-.sort((a,b)=>{
-
-const scoreA=
-(state.pairCounts[
-pairKey(first,a)
-]||0)
-+
-(state.pairCounts[
-pairKey(second,a)
-]||0);
-
-const scoreB=
-(state.pairCounts[
-pairKey(first,b)
-]||0)
-+
-(state.pairCounts[
-pairKey(second,b)
-]||0);
-
-return scoreA-scoreB;
-
-});
+  const first =
+    candidates[0];
 
 
-const third=
-thirdCandidates[0];
+  const secondCandidates =
 
-let group=[
-first,
-second,
-third
-];
+    players
+    .filter(
+      p => p.id !== first.id
+    )
+    .sort((a,b)=>{
+
+      const pairA =
+        state.pairCounts[
+          pairKey(first,a)
+        ] || 0;
+
+      const pairB =
+        state.pairCounts[
+          pairKey(first,b)
+        ] || 0;
+
+      if(pairA !== pairB){
+
+        return pairA - pairB;
+
+      }
+
+      return (
+        (state.wins[a.id] || 0) -
+        (state.wins[b.id] || 0)
+      );
+
+    });
 
 
-/*
-同じ3人組を避ける
-*/
+  const second =
+    secondCandidates[0];
 
-const previous=
-state.leagueHistory.map(
-h=>h.trioKey
-);
 
-if(previous.includes(trioKey(group))){
+  const thirdCandidates =
 
-const alternatives=
-shuffle(
-players.filter(
-p=>!group.some(
-x=>x.id===p.id
-)
-)
-);
+    players
+    .filter(
+      p =>
+        p.id !== first.id &&
+        p.id !== second.id
+    )
+    .sort((a,b)=>{
 
-for(const alt of alternatives){
+      const scoreA =
+        (state.pairCounts[
+          pairKey(first,a)
+        ] || 0) +
+        (state.pairCounts[
+          pairKey(second,a)
+        ] || 0);
 
-const test=[
-first,
-second,
-alt
-];
+      const scoreB =
+        (state.pairCounts[
+          pairKey(first,b)
+        ] || 0) +
+        (state.pairCounts[
+          pairKey(second,b)
+        ] || 0);
 
-if(!previous.includes(trioKey(test))){
+      return scoreA - scoreB;
 
-group=test;
-break;
+    });
 
-}
 
-}
+  let group = [
 
-}
+    first,
+    second,
+    thirdCandidates[0]
 
-return shuffle(group);
+  ];
+
+
+  const previous =
+    state.leagueHistory.map(
+      h => h.trioKey
+    );
+
+
+  if(previous.includes(
+    trioKey(group)
+  )){
+
+    const alternatives =
+      shuffle(
+        players.filter(
+          p =>
+            !group.some(
+              x => x.id === p.id
+            )
+        )
+      );
+
+    for(const alt of alternatives){
+
+      const test = [
+        first,
+        second,
+        alt
+      ];
+
+      if(
+        !previous.includes(
+          trioKey(test)
+        )
+      ){
+
+        group = test;
+
+        break;
+
+      }
+
+    }
+
+  }
+
+
+  return shuffle(group);
 
 }
 
@@ -933,32 +1121,40 @@ return shuffle(group);
 
 function startLeague(){
 
-$("qualify").classList.add("hidden");
+  $("qualify")
+    .classList
+    .add("hidden");
 
-if(state.finalists.length===0){
+  if(state.finalists.length === 0){
 
-showFinalResult([]);
+    showFinalResult([]);
 
-return;
+    return;
 
-}
+  }
 
-if(state.finalists.length<3){
 
-state.result=
-[...state.finalists];
+  if(state.finalists.length < 3){
 
-showFinalResult(state.result);
+    state.result =
+      [...state.finalists];
 
-return;
+    showFinalResult(
+      state.result
+    );
 
-}
+    return;
 
-initializeLeague();
+  }
 
-$("league").classList.remove("hidden");
 
-showLeague();
+  initializeLeague();
+
+  $("league")
+    .classList
+    .remove("hidden");
+
+  showLeague();
 
 }
 
@@ -969,75 +1165,79 @@ showLeague();
 
 function showLeague(){
 
-/*
-通過人数に応じて試行回数を設定
+  /*
+   * 選ばれた人数によって
+   * 試行回数を変える
+   */
 
-少人数なら少なく、
-人数が多いほど増える
-*/
-
-const totalRounds=
-Math.max(
-15,
-Math.min(
-45,
-state.finalists.length*3
-)
-);
+  const totalRounds =
+    Math.max(
+      15,
+      Math.min(
+        45,
+        state.finalists.length * 3
+      )
+    );
 
 
-if(state.leagueIndex>=totalRounds){
+  if(
+    state.leagueIndex >=
+    totalRounds
+  ){
 
-finishLeague();
-return;
+    finishLeague();
 
-}
+    return;
 
-
-let group;
-
-
-/*
-すでに履歴があれば
-その対戦を表示
-*/
-
-if(
-state.leagueHistory[state.leagueIndex]
-){
-
-group=
-state.leagueHistory[state.leagueIndex].group;
-
-}else{
-
-group=createNextLeagueGroup();
-
-}
+  }
 
 
-$("leagueTitle").textContent=
-`予選通過リーグ ${state.leagueIndex+1} / ${totalRounds}`;
+  let group;
 
-$("leagueBar").style.width=
-`${(state.leagueIndex/totalRounds)*100}%`;
 
-$("leagueGrid").innerHTML=
+  if(
+    state.leagueHistory[
+      state.leagueIndex
+    ]
+  ){
 
-group.map(p=>`
+    group =
+      state.leagueHistory[
+        state.leagueIndex
+      ].group;
 
-<button
-onclick="chooseLeague(${p.id})">
+  }else{
 
-<img src="${p.url}">
+    group =
+      createNextLeagueGroup();
 
-<div class="label">
-選ぶ
-</div>
+  }
 
-</button>
 
-`).join("");
+  $("leagueTitle").textContent =
+    `予選通過リーグ ${state.leagueIndex + 1} / ${totalRounds}`;
+
+
+  $("leagueBar").style.width =
+    `${(state.leagueIndex / totalRounds) * 100}%`;
+
+
+  $("leagueGrid").innerHTML =
+
+    group.map(p=>`
+
+      <button
+        onclick="chooseLeague(${p.id})">
+
+        <img src="${p.url}">
+
+        <div class="label">
+          選ぶ
+        </div>
+
+      </button>
+
+    `).join("");
 
 }
 
@@ -1046,165 +1246,176 @@ onclick="chooseLeague(${p.id})">
 リーグ選択
 ========================= */
 
-window.chooseLeague=function(id){
+window.chooseLeague =
+function(id){
 
-const history=
-state.leagueHistory[state.leagueIndex];
-
-const group=
-history
-?history.group
-:createNextLeagueGroup();
+  const oldHistory =
+    state.leagueHistory[
+      state.leagueIndex
+    ];
 
 
-/*
-登場回数
-*/
-
-group.forEach(p=>{
-
-state.appearances[p.id]=
-(state.appearances[p.id]||0)+1;
-
-});
+  const group =
+    oldHistory
+    ? oldHistory.group
+    : createNextLeagueGroup();
 
 
-/*
-ペア比較回数
-*/
+  group.forEach(p=>{
 
-for(let i=0;i<group.length;i++){
+    state.appearances[p.id] =
+      (state.appearances[p.id] || 0) + 1;
 
-for(let j=i+1;j<group.length;j++){
-
-const key=
-pairKey(group[i],group[j]);
-
-state.pairCounts[key]=
-(state.pairCounts[key]||0)+1;
-
-}
-
-}
+  });
 
 
-/*
-勝利
-*/
+  for(
+    let i=0;
+    i<group.length;
+    i++
+  ){
 
-state.wins[id]=
-(state.wins[id]||0)+1;
+    for(
+      let j=i+1;
+      j<group.length;
+      j++
+    ){
+
+      const key =
+        pairKey(
+          group[i],
+          group[j]
+        );
+
+      state.pairCounts[key] =
+        (state.pairCounts[key] || 0) + 1;
+
+    }
+
+  }
 
 
-/*
-履歴
-*/
+  state.wins[id] =
+    (state.wins[id] || 0) + 1;
 
-state.leagueHistory[
-state.leagueIndex
-]={
 
-group:group,
-selectedId:id,
-trioKey:trioKey(group)
+  state.leagueHistory[
+    state.leagueIndex
+  ] = {
+
+    group:group,
+    selectedId:id,
+    trioKey:trioKey(group)
+
+  };
+
+
+  state.leagueIndex++;
+
+  showLeague();
 
 };
-
-
-state.leagueIndex++;
-
-showLeague();
-
-};
-
-
-/* =========================
-直前のリーグを取り消す
-========================= */
-
-function undoLastLeagueRound(){
-
-if(state.leagueHistory.length===0){
-
-return;
-
-}
-
-const index=
-state.leagueHistory.length-1;
-
-const last=
-state.leagueHistory[index];
-
-
-/*
-勝利を取り消す
-*/
-
-state.wins[last.selectedId]--;
-
-
-/*
-登場回数を戻す
-*/
-
-last.group.forEach(p=>{
-
-state.appearances[p.id]--;
-
-});
-
-
-/*
-比較回数を戻す
-*/
-
-for(let i=0;i<last.group.length;i++){
-
-for(let j=i+1;j<last.group.length;j++){
-
-const key=
-pairKey(last.group[i],last.group[j]);
-
-state.pairCounts[key]--;
-
-}
-
-}
-
-
-state.leagueHistory.pop();
-
-state.leagueIndex=index;
-
-}
 
 
 /* =========================
 リーグ 戻る
 ========================= */
 
-$("leagueBack").addEventListener("click",()=>{
+function undoLastLeagueRound(){
 
-if(state.leagueHistory.length===0){
+  if(
+    state.leagueHistory.length === 0
+  ){
 
-$("league").classList.add("hidden");
-$("qualify").classList.remove("hidden");
+    return;
 
-state.qualifyIndex=
-state.qualifyGroups.length-1;
+  }
 
-showQualify();
 
-return;
+  const index =
+    state.leagueHistory.length - 1;
+
+  const last =
+    state.leagueHistory[index];
+
+
+  state.wins[
+    last.selectedId
+  ]--;
+
+
+  last.group.forEach(p=>{
+
+    state.appearances[p.id]--;
+
+  });
+
+
+  for(
+    let i=0;
+    i<last.group.length;
+    i++
+  ){
+
+    for(
+      let j=i+1;
+      j<last.group.length;
+      j++
+    ){
+
+      const key =
+        pairKey(
+          last.group[i],
+          last.group[j]
+        );
+
+      state.pairCounts[key]--;
+
+    }
+
+  }
+
+
+  state.leagueHistory.pop();
+
+  state.leagueIndex = index;
 
 }
 
-undoLastLeagueRound();
 
-showLeague();
+$("leagueBack")
+.addEventListener(
+  "click",
+  ()=>{
 
-});
+    if(
+      state.leagueHistory.length === 0
+    ){
+
+      $("league")
+        .classList
+        .add("hidden");
+
+      $("qualify")
+        .classList
+        .remove("hidden");
+
+      state.qualifyIndex =
+        state.qualifyGroups.length - 1;
+
+      showQualify();
+
+      return;
+
+    }
+
+
+    undoLastLeagueRound();
+
+    showLeague();
+
+  }
+);
 
 
 /* =========================
@@ -1213,130 +1424,133 @@ showLeague();
 
 function finishLeague(){
 
-$("league").classList.add("hidden");
+  $("league")
+    .classList
+    .add("hidden");
 
 
-const sorted=
-[...state.finalists].sort((a,b)=>{
+  const sorted =
+    [...state.finalists]
+    .sort((a,b)=>{
 
-const winsA=
-state.wins[a.id]||0;
+      const winsA =
+        state.wins[a.id] || 0;
 
-const winsB=
-state.wins[b.id]||0;
-
-if(winsA!==winsB){
-
-return winsB-winsA;
-
-}
+      const winsB =
+        state.wins[b.id] || 0;
 
 
-/*
-同点なら勝率を比較
-*/
+      if(winsA !== winsB){
 
-const appA=
-state.appearances[a.id]||1;
+        return winsB - winsA;
 
-const appB=
-state.appearances[b.id]||1;
-
-const rateA=
-winsA/appA;
-
-const rateB=
-winsB/appB;
-
-if(rateA!==rateB){
-
-return rateB-rateA;
-
-}
-
-return Math.random()-.5;
-
-});
+      }
 
 
-state.result=
-sorted.slice(
-0,
-Math.min(9,sorted.length)
-);
+      const appA =
+        state.appearances[a.id] || 1;
 
-showFinalResult(state.result);
+      const appB =
+        state.appearances[b.id] || 1;
+
+
+      const rateA =
+        winsA / appA;
+
+      const rateB =
+        winsB / appB;
+
+
+      if(rateA !== rateB){
+
+        return rateB - rateA;
+
+      }
+
+
+      return Math.random() - .5;
+
+    });
+
+
+  state.result =
+    sorted.slice(
+      0,
+      Math.min(
+        9,
+        sorted.length
+      )
+    );
+
+
+  showFinalResult(
+    state.result
+  );
 
 }
 
 
 /* =========================
-結果
+結果表示
 ========================= */
 
 function showFinalResult(result){
 
-$("result").classList.remove("hidden");
-
-$("ranking").innerHTML=
-
-result.map((p,i)=>{
-
-const rank=i+1;
-
-const wins=
-state.wins[p.id]||0;
-
-return`
-
-<div class="resultCard">
-
-<img src="${p.url}">
-
-<div class="rankText">
-${rank}位
-</div>
-
-${
-state.finalists.length>=3
-?`
-<div class="score">
-勝利 ${wins}回
-</div>
-`
-:""
-}
-
-</div>
-
-`;
-
-}).join("");
+  $("result")
+    .classList
+    .remove("hidden");
 
 
-if(result.length===0){
+  $("ranking").innerHTML =
 
-$("ranking").innerHTML=`
+    result.map((p,i)=>{
 
-<div style="
-grid-column:1/-1;
-text-align:center;
-padding:30px;
-">
+      const rank =
+        i + 1;
 
-<b>
-今回は写真が選ばれませんでした
-</b>
 
-<p class="info">
-もう一度ランキングを開始してください。
-</p>
+      return `
 
-</div>
+        <div class="resultCard">
 
-`;
+          <img src="${p.url}">
 
-}
+          <div class="rankText">
+            ${rank}位
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  if(result.length === 0){
+
+    $("ranking").innerHTML = `
+
+      <div
+        style="
+          grid-column:1/-1;
+          text-align:center;
+          padding:40px 20px;
+        "
+      >
+
+        <b>
+          今回は写真が選ばれませんでした
+        </b>
+
+        <p class="info">
+          もう一度ランキングを開始してください。
+        </p>
+
+      </div>
+
+    `;
+
+  }
 
 }
 
@@ -1345,68 +1559,100 @@ padding:30px;
 結果 → リーグ
 ========================= */
 
-$("resultBack").addEventListener("click",()=>{
+$("resultBack")
+.addEventListener(
+  "click",
+  ()=>{
 
-if(state.finalists.length<3){
+    if(
+      state.finalists.length < 3
+    ){
 
-return;
+      return;
 
-}
+    }
 
-$("result").classList.add("hidden");
-$("league").classList.remove("hidden");
 
-/*
-最後の試行を取り消して
-その3枚をもう一度選べる状態にする
-*/
+    $("result")
+      .classList
+      .add("hidden");
 
-if(state.leagueHistory.length>0){
+    $("league")
+      .classList
+      .remove("hidden");
 
-undoLastLeagueRound();
 
-}
+    if(
+      state.leagueHistory.length > 0
+    ){
 
-showLeague();
+      undoLastLeagueRound();
 
-});
+    }
+
+
+    showLeague();
+
+  }
+);
 
 
 /* =========================
 もう一度
 ========================= */
 
-$("retry").addEventListener("click",()=>{
+$("retry")
+.addEventListener(
+  "click",
+  ()=>{
 
-$("result").classList.add("hidden");
-$("league").classList.add("hidden");
-$("qualify").classList.add("hidden");
-$("home").classList.remove("hidden");
+    $("result")
+      .classList
+      .add("hidden");
 
-loadPhotos();
+    $("league")
+      .classList
+      .add("hidden");
 
-});
+    $("qualify")
+      .classList
+      .add("hidden");
+
+    $("home")
+      .classList
+      .remove("hidden");
+
+    loadPhotos();
+
+  }
+);
 
 
 /* =========================
 開始
 ========================= */
 
-$("startButton").addEventListener("click",()=>{
+$("startButton")
+.addEventListener(
+  "click",
+  ()=>{
 
-if(state.photos.length<3){
+    if(
+      state.photos.length < 3
+    ){
 
-alert(
-"写真を3枚以上登録してください。"
+      alert(
+        "写真を3枚以上登録してください。"
+      );
+
+      return;
+
+    }
+
+    startQualify();
+
+  }
 );
-
-return;
-
-}
-
-startQualify();
-
-});
 
 
 /* =========================
